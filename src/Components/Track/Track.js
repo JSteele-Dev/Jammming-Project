@@ -1,8 +1,11 @@
 import React from "react";
 
-function Tracks({track, onAdd}) {
-    const passTrack = async (e) => {
+function Tracks({track, onAdd, onRemoval}) {
+    const passTrack = (e) => {
         onAdd.onAdd(track.track);
+    }
+    const passTrackToRemove = (e) => {
+        onRemoval.onRemoval(track.track);
     }
 
     return (
@@ -11,7 +14,7 @@ function Tracks({track, onAdd}) {
                 <h3>{track.track}</h3>
                 <p>{track.artist} | {track.album}</p>
             </div>
-            <button onClick={passTrack}>Add or Remove button</button>
+            <button onClick={passTrack} on>Add or Remove button</button>
         </div>
     )
 }

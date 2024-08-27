@@ -5,7 +5,7 @@ function Tracklist(props) {
     return (
         <div>
             {props.userResult?.map((songs) => (
-                <Tracks track={songs} key={songs.id} onAdd={props.onAdd} isRemoval={props.isRemoval} />
+                <Tracks track={songs} key={songs.id} onAdd={props.onAdd} onRemoval={props.onRemoval} isRemoval={props.isRemoval} />
             ))}
         </div>
     )
