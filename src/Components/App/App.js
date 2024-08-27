@@ -50,6 +50,9 @@ function App() {
     const toRemove = playlistTracks.filter((t) => t.id !== track.id);
     setPlaylistTracks(toRemove);
   }
+  const updatePlaylistName = (name) => {
+    setPlaylistName(name);
+  }
 
   return (
     <div className="App">
@@ -58,7 +61,7 @@ function App() {
         <SearchBar />
         <div style={{display: 'flex', justifyContent:'center'}}>
           <SearchResults userResult={searchResults} onAdd={addTracks} />
-          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTracks} />
+          <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={removeTracks} onNameChange={updatePlaylistName} />
         </div>
       </div>
     </div>
