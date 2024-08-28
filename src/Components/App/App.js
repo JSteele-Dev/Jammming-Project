@@ -39,11 +39,16 @@ function App() {
     }
   ]);
 
-  const addTracks = async (track) => {
-    if (track.id) {
-      setPlaylistTracks((prev) => {
-        prev.push([...prev, track]);
-      })
+  const addTracks = (track) => {
+    const isAdded = playlistTracks.find((t) => t.id === track.id);
+    const addTrack = playlistTracks.concat(track);
+
+    if (isAdded) {
+      console.log(track);
+      console.log("This Track is already added");
+    } else {
+      console.log(track);
+      setPlaylistTracks(addTrack);
     }
   }
   const removeTracks = (track) => {
