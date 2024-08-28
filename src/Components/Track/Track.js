@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function Tracks({track, onAdd, onRemoval, isRemoval}) {
+function Tracks(props) {
     const passTrack = () => {
-        onAdd.onAdd(track.track);
+        props.onAdd(props.track);
     }
     const passTrackToRemove = () => {
-        onRemoval.onRemoval(track.track);
+        props.onRemoval(props.track);
     }
+
+    const button = () => {
+        if (props.isRemoval) {
+            return (
+                <button onClick={passTrackToRemove}> - </button>
+            )
+        } else {
+            return (
+                <button onClick={passTrack}> + </button>
+            )
+        }
+    }
+
+    useEffect(() => {
+        console.log(props.isRemoval)
+    }, [props.isRemoval])
 
     return (
         <div>
             <div>
-                <h3>{track.track}</h3>
-                <p>{track.artist} | {track.album}</p>
+                <h3>{props.track.track}</h3>
+                <p>{props.track.artist} | {props.track.album}</p>
             </div>
             {/* verify if isRemoval is true or false, true will remove track, false will add track */}
-            <button onClick={isRemoval ? passTrackToRemove : passTrack}>{isRemoval ? '-' : '+'}</button>
+            {button()}
         </div>
     )
 }
