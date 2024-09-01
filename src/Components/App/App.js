@@ -42,7 +42,6 @@ function App() {
   useEffect(() => {
     if (!accessToken) {
       Spotify.getAccessToken();
-      console.log("This rendered");
     }
   }, []);
 
