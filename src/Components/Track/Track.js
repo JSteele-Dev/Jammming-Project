@@ -1,4 +1,10 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 
 function Tracks(props) {
   const passTrack = () => {
@@ -8,25 +14,39 @@ function Tracks(props) {
     props.onRemoval(props.track);
   };
 
-  const button = () => {
-    if (props.isRemoval) {
-      return <button onClick={passTrackToRemove}> - </button>;
-    } else {
-      return <button onClick={passTrack}> + </button>;
-    }
-  };
-
   return (
-    <div>
-      <div>
-        <h3>{props.track.name}</h3>
-        <p>
-          {props.track.artist} | {props.track.album}
-        </p>
-      </div>
-      {/* verify if isRemoval is true or false, true will remove track, false will add track */}
-      {button()}
-    </div>
+    <Container>
+      <Row>
+        <Col xs={4} md={4}>
+          <Image src={props.track.artwork} thumbnail />
+        </Col>
+        <Col xs={6}>
+          <Card>
+            <Card.Body>
+              <Card.Title>{props.track.name}</Card.Title>
+              <hr />
+              <Card.Text>
+                {props.track.artist} | {props.track.album}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          {props.isRemoval && (
+            <Button variant="secondary" className="position-relative top-50 start-50 translate-middle" onClick={passTrackToRemove}>
+              {" "}
+              -{" "}
+            </Button>
+          )}
+          {!props.isRemoval && (
+            <Button variant="secondary" className="position-relative top-50 start-50 translate-middle" onClick={passTrack}>
+              {" "}
+              +{" "}
+            </Button>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

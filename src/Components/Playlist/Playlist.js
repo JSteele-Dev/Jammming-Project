@@ -1,5 +1,6 @@
 import React from "react";
 import Tracklist from "../Tracklist/Tracklist";
+import Container from "react-bootstrap/Container";
 
 function Playlist(props) {
   const handleNameChange = (e) => {
@@ -7,18 +8,18 @@ function Playlist(props) {
   };
 
   return (
-    <div style={{ width: "50%", marginTop: 50 }}>
-      <input placeholder={props.playlistName} onChange={handleNameChange} />
-      {/* TODO: remove bottom line... only for testing purposes. */}
-      <p>{props.playlistName}</p>
-      <Tracklist
-        playlist={props.playlistTracks}
-        onRemove={props.onRemove}
-        isRemoval={true}
-        isPlaylist={true}
-      />
+    <Container>
+      <input placeholder={props.playlistName} onChange={handleNameChange} className="mt-2" />
+      <Container className="mt-4 mb-4">
+        <Tracklist
+          playlist={props.playlistTracks}
+          onRemove={props.onRemove}
+          isRemoval={true}
+          isPlaylist={true}
+        />
+      </Container>
       <button onClick={props.onSave}>Save To Spotify</button>
-    </div>
+    </Container>
   );
 }
 

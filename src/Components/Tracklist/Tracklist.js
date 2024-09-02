@@ -1,5 +1,6 @@
 import React from "react";
 import Tracks from "../Track/Track";
+import Container from "react-bootstrap/Container"
 
 function Tracklist(props) {
   const listing = () => {
@@ -24,7 +25,7 @@ function Tracklist(props) {
     }
   };
 
-  return <div>{listing()}</div>;
+  return <Container>{listing()}</Container>;
 }
 
 export default Tracklist;

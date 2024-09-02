@@ -1,6 +1,6 @@
 let accessToken = "";
-const redirectUrl = "YOUR APPLICATION URL";
-const client_id = "CLIENT_ID";
+const redirectUrl = "APP URL";
+const client_id = "CLIENT ID";
 
 const Spotify = {
   getAccessToken() {
@@ -61,6 +61,7 @@ const Spotify = {
       name: track.name,
       artist: track.artists[0].name,
       album: track.album.name,
+      artwork: track.album.images[0].url,
       uri: track.uri,
     }));
   },

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import Playlist from "../Playlist/Playlist";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
-import "./App.css";
 import { Spotify, accessToken } from "../../util/Spotify";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [playlistName, setPlaylistName] = useState("Playlist Name...");
+  const [playlistName, setPlaylistName] = useState("New playlist Name...");
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
   const addTracks = (track) => {
@@ -30,7 +33,7 @@ function App() {
   const savePlaylist = () => {
     const trackURI = playlistTracks.map((t) => t.uri);
     Spotify.saveUserPlaylist(playlistName, trackURI).then(() => {
-      updatePlaylistName("Playlist Name...");
+      updatePlaylistName("New playlist Name...");
       setPlaylistTracks([]);
       setSearchResults([]);
     });
@@ -46,24 +49,30 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>
-        Ja<span style={{ color: "purple" }}>mmm</span>ing
+    <Container className="text-center">
+      <h1 className="mt-5 mb-5 bg-black text-white p-3">
+        Ja<span style={{color: "purple"}}>mmm</span>ing
       </h1>
-      <div>
+      <Container className="text-center">
         <SearchBar onSearch={search} />
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <SearchResults userResult={searchResults} onAdd={addTracks} />
-          <Playlist
-            playlistName={playlistName}
-            playlistTracks={playlistTracks}
-            onRemove={removeTracks}
-            onNameChange={updatePlaylistName}
-            onSave={savePlaylist}
-          />
-        </div>
-      </div>
-    </div>
+        <Container className="border rounded-4">
+          <Row>
+            <Col className="border-end">
+              <SearchResults userResult={searchResults} onAdd={addTracks} />
+            </Col>
+            <Col className="border-start">
+              <Playlist
+                playlistName={playlistName}
+                playlistTracks={playlistTracks}
+                onRemove={removeTracks}
+                onNameChange={updatePlaylistName}
+                onSave={savePlaylist}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </Container>
+    </Container>
   );
 }
 

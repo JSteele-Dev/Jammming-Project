@@ -1,16 +1,17 @@
 import React from "react";
 import Tracklist from "../Tracklist/Tracklist";
+import Container from "react-bootstrap/Container"
 
 function SearchResults(props) {
   return (
-    <div style={{ width: "50%", marginTop: 50 }}>
+    <Container>
       <Tracklist
         userResult={props.userResult}
         isRemoval={false}
         onAdd={props.onAdd}
         isPlaylist={false}
       />
-    </div>
+    </Container>
   );
 }
 
